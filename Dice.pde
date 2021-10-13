@@ -1,4 +1,5 @@
-Die myD = new Die(250, 250);
+int num = 10;
+int dieSize;
 void setup()
 {
   noLoop();
@@ -7,59 +8,68 @@ void setup()
 }
 void draw()
 {
-  background(0);
-  myD.roll();
-  myD.show();
+  dieSize = width/num;
+  background(50);
+  for(int i = 1; i <= num; i ++)
+  {
+    for(int j = 1; j <= num; j ++)
+    {
+      Die myD = new Die(i * dieSize - dieSize/2, j * dieSize - dieSize/2, dieSize);
+      myD.roll();
+      myD.show();
+    }
+  }
 }
 void mousePressed()
 {
   redraw();
 }
+
 class Die //models one single dice cube
 {
   //variable declarations here
   private int num;
   private int x;
   private int y;
-  private int size = width/2;
+  private int size;
+  private int cSize;
 
-  Die(int x, int y) //constructor
+  Die(int x, int y, int size) //constructor
   {
     this.x = x;
     this.y = y;
+    this.size = size;
+    this.cSize = size/4;
   }
   void roll()
   {
-    
+
     this.num = (int) ((Math.random() * 6) + 1);
   }
   void show()
   {
-    rect(this.x, this.y, this.size, this.size);
-    if (num == 1 || num == 3 || num == 5) //middle
+    fill(255);
+    rectMode(CENTER);
+    rect(x, y, size, size, size/10);
+    fill(5);
+    if (num % 2 == 1) // CENTER
     {
-      ellipse(x + size/2, y + size/2, size/5, size/5);
+      ellipse(x, y, cSize, cSize);
     }
-    if (num == 2 || num == 3 || num == 4 || num == 5 || num == 6)//top left
+    if (num != 1) //TOP LEFT and BOTTEM RIGHT
     {
-      ellipse(x + (size/5), y + (size/5), size/5, size/5);
+      ellipse(x - cSize, y - cSize, cSize, cSize); // top left
+      ellipse(x + cSize, y + cSize, cSize, cSize); //bottem right
     }
-    if (num == 4 || num == 5 || num == 6)//top right
+    if (num >= 4) //TOP RIGHT and BOTTEM LEFT
     {
-      ellipse(x + size - (size/5) - 2, y + (size/5), size/5, size/5);
-    }
-    if (num == 4 || num == 5 || num == 6)//bottem left
-    {
-      ellipse(x + (size/5), y + size - (size/5) - 2, size/5, size/5);
-    }
-    if (num == 2 || num == 3 || num == 4 || num == 5 || num == 6)//bottem right
-    {
-      ellipse(x + size - (size/5) - 2, y + size - (size/5) - 2, size/5, size/5);
+      ellipse(x + cSize, y - cSize, cSize, cSize); //top right
+      ellipse(x - cSize, y + cSize, cSize, cSize); //bottem left
     }
     if (num == 6)
     {
-      ellipse(x + size - (size/5) - 2, y + size/2, size/5, size/5);
-      ellipse(x + (size/5), y + size/2, size/5, size/5);
+      ellipse(x - cSize, y, cSize, cSize);
+      ellipse(x + cSize, y, cSize, cSize);
     }
   }
 }
