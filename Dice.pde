@@ -1,5 +1,6 @@
 int num = 10;
 int dieSize;
+int sum = 0;
 void setup()
 {
   noLoop();
@@ -8,6 +9,7 @@ void setup()
 }
 void draw()
 {
+  sum = 0;
   dieSize = width/num;
   background(50);
   for(int i = 1; i <= num; i ++)
@@ -17,8 +19,13 @@ void draw()
       Die myD = new Die(i * dieSize - dieSize/2, j * dieSize - dieSize/2, dieSize);
       myD.roll();
       myD.show();
+      sum += myD.getVal();
     }
   }
+  fill(0);
+  rect(0, 0, 100, 50);
+  fontSize(25);
+  text("Total =" + sum);
 }
 void mousePressed()
 {
