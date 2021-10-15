@@ -12,9 +12,9 @@ void draw()
   sum = 0;
   dieSize = width/num;
   background(50);
-  for(int i = 1; i <= num; i ++)
+  for (int i = 1; i <= num; i ++)
   {
-    for(int j = 1; j <= num; j ++)
+    for (int j = 1; j <= num; j ++)
     {
       Die myD = new Die(i * dieSize - dieSize/2, j * dieSize - dieSize/2, dieSize);
       myD.roll();
@@ -22,11 +22,11 @@ void draw()
       sum += myD.getVal();
     }
   }
-  fill(0);
-  rect(0, 0, 100, 50);
-  fontSize(25);
+  fill(0, 0, 0, 100);
+  rect(0, 0, 300, 50);
+  textSize(25);
   fill(255);
-  text("Total =" + sum, 0, 0);
+  text("Total =" + sum, 0, 25);
 }
 void mousePressed()
 {
@@ -82,6 +82,6 @@ class Die //models one single dice cube
   }
   int getVal()
   {
-  return this.num;
+    return this.num;
   }
 }
