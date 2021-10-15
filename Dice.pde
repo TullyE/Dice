@@ -79,7 +79,7 @@ class Die //models one single dice cube
       ellipse(x + cSize, y, cSize, cSize);
     }
   }
-  void getVal()
+  int getVal()
   {
   return this.num;
   }
