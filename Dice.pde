@@ -26,7 +26,7 @@ void draw()
   rect(0, 0, 100, 50);
   fontSize(25);
   fill(255);
-  text("Total =" + sum);
+  text("Total =" + sum, 0, 0);
 }
 void mousePressed()
 {
